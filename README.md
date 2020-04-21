@@ -1,5 +1,5 @@
 # RandomSong
-a random song generator written in chuck, it stays in the same key and moves through chords randomly, its not amazing but it doesnt sound bad.
+A random song generator written in chuck, it stays in the same key and moves through chords randomly. its not amazing but it doesnt sound bad.
 
 run with:
 `chuck main.ck`
