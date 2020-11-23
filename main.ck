@@ -6,10 +6,10 @@ if(!keyboard.openKeyboard(0)) me.exit();
 
 Bass b;
 Melody m;
-Melody m2;
-Melody m3;
-Melody m4;
-Melody m5;
+// Melody m2;
+// Melody m3;
+// Melody m4;
+// Melody m5;
 
 [
 	[0, 4, 7],
@@ -29,7 +29,8 @@ Std.srand(2);
 
 spork ~ kbListener();
 while (true) {
-	Math.random2(0, 6) => int chordNum;
+	// Math.random2(0, 6) => int chordNum;
+	randWeight([5, 3, 4, 5, 5, 4, 3]) => int chordNum;
 	Math.random2(1,4) => int numBeats;
 	
 	runBar(chordNum, numBeats);
@@ -39,22 +40,21 @@ while (true) {
 		runBar(3, numBeats);
 		Math.random2(1,4) => numBeats;
 		runBar(4, numBeats);
-		Math.random2(1,4) => numBeats;
-		runBar(0, numBeats);
+		// Math.random2(1,4) => numBeats;
+		// runBar(0, numBeats);
 		endSong(0, 4);
 		me.exit();
 	}
-	
 }
 
 fun void runBar(int chordNum, int numBeats) {
 	<<< numBeats, chordNum >>>;
 
 	spork ~ m.play(chordNum, numBeats, 4);
-	spork ~ m2.play(chordNum, numBeats, 5);
-	spork ~ m3.play(chordNum, numBeats, 6);
-	spork ~ m4.play(chordNum, numBeats, 4);
-	spork ~ m5.play(chordNum, numBeats, 3);
+	// spork ~ m2.play(chordNum, numBeats, 5);
+	// spork ~ m3.play(chordNum, numBeats, 6);
+	// spork ~ m4.play(chordNum, numBeats, 4);
+	// spork ~ m5.play(chordNum, numBeats, 3);
 	b.play(chordNum, numBeats);
 }
 
@@ -62,10 +62,10 @@ fun void endSong(int chordNum, int numBeats) {
 	<<< "end:", numBeats, chordNum >>>;
 
 	spork ~ m.end(chordNum, numBeats, 4);
-	spork ~ m2.end(chordNum, numBeats, 5);
-	spork ~ m3.end(chordNum, numBeats, 6);
-	spork ~ m4.end(chordNum, numBeats, 4);
-	spork ~ m5.end(chordNum, numBeats, 3);
+	// spork ~ m2.end(chordNum, numBeats, 5);
+	// spork ~ m3.end(chordNum, numBeats, 6);
+	// spork ~ m4.end(chordNum, numBeats, 4);
+	// spork ~ m5.end(chordNum, numBeats, 3);
 	b.end(chordNum, numBeats);
 }
 
@@ -164,3 +164,18 @@ class Bass {
 	}
 }
 
+fun int randWeight(int weights[]) {
+	0 => int sum;
+	for (0 => int i; i < weights.cap(); i++) {
+		weights[i] +=> sum;
+	}
+	Math.random2(0, sum) => int rnd;
+
+	for(0 => int i; i < weights.cap(); i++) {
+		if(rnd < weights[i])
+			return i;
+		weights[i] -=> rnd;
+	}
+
+	return 0;
+}
