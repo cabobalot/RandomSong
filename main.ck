@@ -30,7 +30,7 @@ Std.srand(2);
 spork ~ kbListener();
 while (true) {
 	// Math.random2(0, 6) => int chordNum;
-	randWeight([5, 3, 4, 5, 5, 4, 3]) => int chordNum;
+	randWeight([1, 10, 5, 1, 1, 5, 10]) => int chordNum;
 	Math.random2(1,4) => int numBeats;
 	
 	runBar(chordNum, numBeats);
